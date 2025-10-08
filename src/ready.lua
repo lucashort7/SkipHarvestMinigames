@@ -31,14 +31,14 @@ if config.Harvest.Enabled then
     modutil.mod.Path.Context.Wrap('UseHarvestPoint', function()
         hw.DebugPrint('[UseHarvestPoint] triggered', 4)
         
-        -- gives tool if wanted, otherwise checks if has any
-        if config.Harvest.GiveTool then
-            hw.DebugPrint('[ToolHarvest] Added to Hero...', 4)
-            GameState.WeaponsUnlocked["ToolHarvest"] = true
-        elseif not HasAccessToTool( "ToolHarvest" ) then 
-            hw.DebugPrint('[ToolHarvest] Missing Tool...', 4)
-            return
-        end
+        -- -- gives tool if wanted, otherwise checks if has any
+        -- if config.Harvest.GiveTool then
+        --     hw.DebugPrint('[ToolHarvest] Added to Hero...', 4)
+        --     GameState.WeaponsUnlocked["ToolHarvest"] = true
+        -- elseif not HasAccessToTool( "ToolHarvest" ) then 
+        --     hw.DebugPrint('[ToolHarvest] Missing Tool...', 4)
+        --     return
+        -- end
 
         -- ignore invulnerability animations
         modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', function()
@@ -51,7 +51,6 @@ if config.Harvest.Enabled then
         modutil.mod.Path.Override('FamiliarHarvestStartPresentation', function(source)
             SetBlankAnimation(source, 'FamiliarHarvestStartPresentation')
         end)
-
         modutil.mod.Path.Override('HarvestStartPresentation', function(source)
             SetBlankAnimation(source, 'HarvestStartPresentation')
         end)
@@ -134,7 +133,7 @@ if config.Pickaxe.Enabled then
 
         hw.DebugPrint('[UsePickaxePoint] Skipped Animation Successfully', 4)
     end)
-    
+
 end
 
 ----------------------

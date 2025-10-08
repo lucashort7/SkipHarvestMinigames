@@ -27,10 +27,6 @@ If you wants to install manually, checkout Hell2Modding README for more details.
     - Refers to collecting Flowers/Plants.
     - When enabled, you will always skip _Harvest_ animations.
 
-    - ___GiveTool___
-        - Disabled by default.
-        - Gives Tool if you haven`t yet.
-
 - ___Shovel___
     - Enabled by default.
     - Refers to Digging.
