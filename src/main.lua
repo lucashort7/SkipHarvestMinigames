@@ -97,7 +97,7 @@ local function on_ready()
 	import_as_fallback(rom.game)
 	import 'ready.lua'
 
-	printMsg('[[ -- local.mod.on_ready() -- ]]')
+	-- printMsg('[[ -- local.mod.on_ready() -- ]]')
 
 end
 
@@ -108,7 +108,7 @@ local function on_reload()
 	import_as_fallback(rom.game)
 	import 'reload.lua'
 
-	printMsg('[[ -- local.mod.on_reload() -- ]]')
+	-- printMsg('[[ -- local.mod.on_reload() -- ]]')
 
 end
 
