@@ -6,7 +6,7 @@
 -- 	so only assign to values or define things here.
 
 function SetBlankAnimation(source, funcName)
-	-- printMsg('---- [' .. funcName .. '] triggered') 
+	hw.DebugPrint('[' .. funcName .. '] triggered', 4)
 	-- printMsg('---- [source]: \n' .. dumpTable(source))
 	if source ~= nil then
 		return rom.game.SetAnimation({Name = "Blank", DestinationId = source.ObjectId})

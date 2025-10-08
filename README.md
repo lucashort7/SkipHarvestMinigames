@@ -1,7 +1,9 @@
-# hort - SkipHarvestMinigames
+# SkipHarvestMinigames
 
-A Mod that get all Harvest resources but skips Minigames/Animations in Hades II.
+A Mod that get all Harvest Resources but skips Minigames/Animations in Hades II.
 Includes Familiars Harvesting :)
+
+Also, you can enable all Harvesting Tools if you havent yet.
 
 ## Installation
 
@@ -25,22 +27,42 @@ If you wants to install manually, checkout Hell2Modding README for more details.
     - Refers to collecting Flowers/Plants.
     - When enabled, you will always skip _Harvest_ animations.
 
+    - ___GiveTool___
+        - Disabled by default.
+        - Gives Tool if you haven`t yet.
+
 - ___Shovel___
     - Enabled by default.
     - Refers to Digging.
     - When enabled, you will always skip _Shovel_ animations.
 
+    - ___GiveTool___
+        - Disabled by default.
+        - Gives Tool if you haven`t yet.
+
 - ___Pickaxe___
-    - Enabled by default
+    - Enabled by default.
     - Refers to Mining.
     - When enabled, you will always skip _Pickaxe_ animations.
 
+    - ___GiveTool___
+        - Disabled by default.
+        - Gives Tool if you haven`t yet.
+
 - ___Exorcism___
-    - Enabled by default
+    - Enabled by default.
     - Refers to Spirits minigame.
     - When enabled, you will always skip _Exorcism_ animations.
+    
+    - ___GiveTool___
+        - Disabled by default.
+        - Gives Tool if you haven`t yet.
 
 - ___Fishing___
-    - Enabled by default
+    - Enabled by default.
     - Refers to Fishing minigame.
     - When enabled, you will always skip _Fishing_ animations.
+
+    - ___GiveTool___
+        - Disabled by default.
+        - Gives Tool if you haven`t yet.
