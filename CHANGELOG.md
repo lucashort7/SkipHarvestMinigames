@@ -11,5 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed config.lua reference
 
+[unreleased]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.1.0...0.2.0
 
-[0.2.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.2.0...0.1.0
