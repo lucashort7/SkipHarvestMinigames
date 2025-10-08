@@ -3,7 +3,7 @@ schemaVersion = "0.0.1"
 
 
 [package]
-namespace = "lucashort7"
+namespace = "hortWizard"
 name = "SkipHarvestMinigames"
 versionNumber = "0.1.0"
 description = "Skips all Harvest Minigames."
