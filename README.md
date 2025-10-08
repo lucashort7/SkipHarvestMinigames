@@ -1,6 +1,6 @@
 # hort - SkipHarvestMinigames
 
-A Mod that skips all Harvest Minigames in Hades II.
+A Mod that get all Harvest resources but skips Minigames/Animations in Hades II.
 Includes Familiars Harvesting :)
 
 ## Installation
@@ -13,9 +13,9 @@ If you wants to install manually, checkout Hell2Modding README for more details.
 
 - Below is a list of features grouped by modules and an explanation as to what they do. If you want to enable/disable or configure a feature, you will find the same name in the config of this mod.
 
-- To access the config, go in __R2Modman__ then config. Choose _SkipHarvestMinigames_ and make any changes you wish.
+- To access the config, go in __R2Modman__ then config. Choose _hortWizard-SkipHarvestMinigames.cfg_ and make any changes you wish.
 
-![Config](assets/r2mod-config.png "Optional title")
+![Config](assets/r2mod-config.png)
 
 
 ## Features
