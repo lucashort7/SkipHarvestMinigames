@@ -17,7 +17,7 @@ data = modutil.mod.Mod.Register(_PLUGIN.guid).Data
 ---------------------
 -- HarvestMinigame --
 ---------------------
-if config.Harvest.enabled then
+if config.Harvest.Enabled then
     modutil.mod.Path.Context.Wrap('UseHarvestPoint', function()
 
         printMsg('[UseHarvestPoint] triggered') 
@@ -44,7 +44,7 @@ end
 --------------------
 -- ShovelMinigame --
 --------------------
-if config.Shovel.enabled then
+if config.Shovel.Enabled then
     modutil.mod.Path.Context.Wrap('UseShovelPoint', function()
 
         printMsg('[UseShovelPoint] triggered') 
@@ -71,7 +71,7 @@ end
 ---------------------
 -- PickaxeMinigame --
 ---------------------
-if config.Pickaxe.enabled then
+if config.Pickaxe.Enabled then
     modutil.mod.Path.Context.Wrap('UsePickaxePoint', function()
         printMsg('[UseShovelPoint] triggered') 
 
@@ -96,7 +96,7 @@ end
 ----------------------
 -- ExorcismMinigame --
 ----------------------
-if config.Exorcism.enabled then
+if config.Exorcism.Enabled then
     modutil.mod.Path.Context.Wrap('UseExorcismPoint', function()
         printMsg('[UseExorcismPoint] triggered') 
 
@@ -119,7 +119,7 @@ end
 ---------------------
 -- FishingMinigame --
 ---------------------
-if config.Exorcism.enabled then
+if config.Exorcism.Enabled then
     modutil.mod.Path.Context.Wrap('UseFishingPoint', function()
         printMsg('[UseFishingPoint] triggered') 
 
