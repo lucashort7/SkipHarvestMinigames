@@ -14,6 +14,21 @@ mod = modutil.mod.Mod.Register(_PLUGIN.guid)
 data = modutil.mod.Mod.Register(_PLUGIN.guid).Data
 
 
+local function _CheckIfToolIsUnlocked( tool ) 
+    if not rom.game.HasAccessToTool( tool ) then 
+        hw.DebugPrint('[' .. tool .. '] Missing Tool...', 4)
+        return false
+    end
+    hw.DebugPrint('[' .. tool .. '] Has Tool...', 4)
+    return true
+end
+
+local function _UnlockTool( tool ) 
+    rom.game.GameState.WeaponsUnlocked[tool] = true
+    hw.DebugPrint('[' .. tool .. '] Added to Hero...', 4)
+end
+
+
 -- modutil.mod.Path.Wrap('LeaveRoom', function ( base, currentRun, door )
 --     hw.DebugPrint('[LeaveRoom] triggered', 4)
 
@@ -31,15 +46,6 @@ if config.Harvest.Enabled then
     modutil.mod.Path.Context.Wrap('UseHarvestPoint', function()
         hw.DebugPrint('[UseHarvestPoint] triggered', 4)
         
-        -- -- gives tool if wanted, otherwise checks if has any
-        -- if config.Harvest.GiveTool then
-        --     hw.DebugPrint('[ToolHarvest] Added to Hero...', 4)
-        --     GameState.WeaponsUnlocked["ToolHarvest"] = true
-        -- elseif not HasAccessToTool( "ToolHarvest" ) then 
-        --     hw.DebugPrint('[ToolHarvest] Missing Tool...', 4)
-        --     return
-        -- end
-
         -- ignore invulnerability animations
         modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', function()
             -- do nothing
@@ -55,7 +61,7 @@ if config.Harvest.Enabled then
             SetBlankAnimation(source, 'HarvestStartPresentation')
         end)
 
-        hw.DebugPrint('[UseHarvestPoint] Skipped Animation Successfully', 4)
+        -- hw.DebugPrint('[UseHarvestPoint] Skipped Animation Successfully', 4)
     end)
 
 end
@@ -69,12 +75,12 @@ if config.Shovel.Enabled then
     modutil.mod.Path.Context.Wrap('UseShovelPoint', function()
         hw.DebugPrint('[UseShovelPoint] triggered', 4)
 
-        -- gives tool if wanted, otherwise checks if has any
+        local HarvestTool = 'ToolShovel'
+
+        -- ignores tool restriction
         if config.Shovel.GiveTool then
-            hw.DebugPrint('[ToolShovel] Added to Hero...', 4)
-            GameState.WeaponsUnlocked["ToolShovel"] = true
-        elseif not HasAccessToTool( "ToolShovel" ) then 
-            hw.DebugPrint('[ToolShovel] Missing Tool...', 4)
+            _UnlockTool(HarvestTool)
+        elseif not _CheckIfToolIsUnlocked(HarvestTool) then
             return
         end
 
@@ -93,7 +99,7 @@ if config.Shovel.Enabled then
             SetBlankAnimation(source, 'ShovelStartPresentation')
         end)
 
-        hw.DebugPrint('[UseShovelPoint] Skipped Animation Successfully', 4)
+        -- hw.DebugPrint('[UseShovelPoint] Skipped Animation Successfully', 4)
     end)
 
 end
@@ -107,12 +113,12 @@ if config.Pickaxe.Enabled then
     modutil.mod.Path.Context.Wrap('UsePickaxePoint', function()
         hw.DebugPrint('[UsePickaxePoint] triggered', 4)
 
-        -- gives tool if wanted, otherwise checks if has any
+        local HarvestTool = 'ToolPickaxe'
+
+        -- ignores tool restriction
         if config.Pickaxe.GiveTool then
-            hw.DebugPrint('[ToolPickaxe] Added to Hero...', 4)
-            GameState.WeaponsUnlocked["ToolPickaxe"] = true
-        elseif not HasAccessToTool( "ToolPickaxe" ) then 
-            hw.DebugPrint('[ToolPickaxe] Missing Tool...', 4)
+            _UnlockTool(HarvestTool)
+        elseif not _CheckIfToolIsUnlocked(HarvestTool) then
             return
         end
 
@@ -131,7 +137,7 @@ if config.Pickaxe.Enabled then
             SetBlankAnimation( source, 'PickaxeStartPresentation')
         end)
 
-        hw.DebugPrint('[UsePickaxePoint] Skipped Animation Successfully', 4)
+        -- hw.DebugPrint('[UsePickaxePoint] Skipped Animation Successfully', 4)
     end)
 
 end
@@ -143,13 +149,13 @@ if config.Exorcism.Enabled then
 
     modutil.mod.Path.Context.Wrap('UseExorcismPoint', function()
         hw.DebugPrint('[UseExorcismPoint] triggered', 4)
-        
-        -- gives tool if wanted, otherwise checks if has any
+
+        local HarvestTool = 'ToolExorcismBook'
+
+        -- ignores tool restriction
         if config.Exorcism.GiveTool then
-            hw.DebugPrint('[ToolExorcismBook] Added to Hero...', 4)
-            GameState.WeaponsUnlocked["ToolExorcismBook"] = true
-        elseif not HasAccessToTool( "ToolExorcismBook" ) then 
-            hw.DebugPrint('[ToolExorcismBook] Missing Tool...', 4)
+            _UnlockTool(HarvestTool)
+        elseif not _CheckIfToolIsUnlocked(HarvestTool) then
             return
         end
 
@@ -164,7 +170,11 @@ if config.Exorcism.Enabled then
             return true
         end)
 
-        hw.DebugPrint('[UseExorcismPoint] Skipped Animation Successfully', 4)
+        modutil.mod.Path.Override('ExorcismSuccessPresentation', function ( source, ...)
+            ExorcismSuccessPresentation_override( source )
+        end)
+
+        -- hw.DebugPrint('[UseExorcismPoint] Skipped Animation Successfully', 4)
     end)
 
 end
@@ -178,25 +188,23 @@ if config.Fishing.Enabled then
     modutil.mod.Path.Context.Wrap('UseFishingPoint', function()
         hw.DebugPrint('[UseFishingPoint] triggered', 4)
 
-        -- gives tool if wanted, otherwise checks if has any
+        local HarvestTool = 'ToolFishingRod'
+
+        -- ignores tool restriction
         if config.Fishing.GiveTool then
-            hw.DebugPrint('[ToolFishingRod] Added to Hero...', 4)
-            GameState.WeaponsUnlocked["ToolFishingRod"] = true
-        elseif not HasAccessToTool( "ToolFishingRod" ) then 
-            hw.DebugPrint('[ToolFishingRod] Missing Tool...', 4)
+            _UnlockTool(HarvestTool)
+        elseif not _CheckIfToolIsUnlocked(HarvestTool) then
             return
         end
 
         modutil.mod.Path.Override('FamiliarFishingPresentation', function(source)
             SetBlankAnimation(source, 'FamiliarFishingPresentation')
         end)
+
         modutil.mod.Path.Override('StartFishing', function( source, args )
-            hw.DebugPrint('[StartFishing] triggered', 4) 
-            CurrentRun.Hero.FishingState = "Success"
-            return
+            StartFishing_override( source, args )
         end)
 
-        hw.DebugPrint('[UseFishingPoint] Skipped Animation Successfully', 4)
     end)
 
 end

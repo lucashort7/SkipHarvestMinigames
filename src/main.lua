@@ -42,9 +42,6 @@ local function on_ready()
 	if config.enabled == false then return end
 	import_as_fallback(rom.game)
 	import 'ready.lua'
-	
-	hw.DebugPrint('[[ -- local.mod.on_ready() -- ]]', 4)
-
 end
 
 local function on_reload()
@@ -53,9 +50,6 @@ local function on_reload()
 	if config.enabled == false then return end
 	import_as_fallback(rom.game)
 	import 'reload.lua'
-	
-	hw.DebugPrint('[[ -- local.mod.on_reload() -- ]]', 4)
-
 end
 
 -- this allows us to limit certain functions to not be reloaded.
