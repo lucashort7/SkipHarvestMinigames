@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2025-10-09
+
 ### Added
 
 - Exorcism Spirits dissipates after animation.
@@ -37,7 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed config.lua reference
 
-[unreleased]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.3.0...HEAD
+[unreleased]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.2.2...0.3.0
 [0.2.2]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.2.1...0.2.2
 [0.2.1]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.2.0...0.2.1
