@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Modified
+
+- Now _GiveTool_ is granted without changing GameState.
+
+### Fixed
+
+- Fix a bug that was crashing the game if a harvesting action was being called repeatedly more than once.
+
 ## [0.4.0] - 2025-10-09
 
 ### Added

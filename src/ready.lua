@@ -5,38 +5,18 @@
 -- this file will not be reloaded if it changes during gameplay
 -- 	so you will most likely want to have it reference
 --	values and functions later defined in `reload.lua`.
-mod = modutil.mod.Mod.Register(_PLUGIN.guid)
 
--- ModUtil.LoadOnce(function()
--- 	rom.data.reload_game_data()
--- end)
+mod = modutil.mod.Mod.Register(_PLUGIN.guid)
 
 data = modutil.mod.Mod.Register(_PLUGIN.guid).Data
 
 
-local function _CheckIfToolIsUnlocked( tool ) 
-    if not rom.game.HasAccessToTool( tool ) then 
-        hw.DebugPrint('[' .. tool .. '] Missing Tool...', 4)
-        return false
-    end
-    hw.DebugPrint('[' .. tool .. '] Has Tool...', 4)
-    return true
+local function wrap(callback)
+	return function( ... )
+		return callback( ... )
+	end
 end
 
-local function _UnlockTool( tool ) 
-    rom.game.GameState.WeaponsUnlocked[tool] = true
-    hw.DebugPrint('[' .. tool .. '] Added to Hero...', 4)
-end
-
-
--- modutil.mod.Path.Wrap('LeaveRoom', function ( base, currentRun, door )
---     hw.DebugPrint('[LeaveRoom] triggered', 4)
-
---     GameState.WorldUpgrades.WorldUpgradeAutoHarvestOnExit = true
---     hw.DebugPrint('[WorldUpgradeAutoHarvestOnExit] ON', 4)
-
---     return base( currentRun, door )
--- end)
 
 ---------------------
 -- HarvestMinigame --
@@ -44,26 +24,24 @@ end
 if config.Harvest.Enabled then
 
     modutil.mod.Path.Context.Wrap('UseHarvestPoint', function()
-        hw.DebugPrint('[UseHarvestPoint] triggered', 4)
+        mod.DebugPrint('[UseHarvestPoint] triggered', 4)
         
         -- ignore invulnerability animations
-        modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', function()
+        modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', wrap(function( source, ... )
             -- do nothing
-        end)
-        modutil.mod.Path.Override('EndFamiliarHarvestInvulnerability', function()
+        end))
+        modutil.mod.Path.Override('EndFamiliarHarvestInvulnerability', wrap(function( source, ... )
             -- do nothing
-        end)
+        end))
 
-        modutil.mod.Path.Override('FamiliarHarvestStartPresentation', function(source)
-            SetBlankAnimation(source, 'FamiliarHarvestStartPresentation')
-        end)
-        modutil.mod.Path.Override('HarvestStartPresentation', function(source)
-            SetBlankAnimation(source, 'HarvestStartPresentation')
-        end)
+        modutil.mod.Path.Override('FamiliarHarvestStartPresentation', wrap(function( source, ... )
+            SetBlankAnimation( source )
+        end))
+        modutil.mod.Path.Override('HarvestStartPresentation', wrap(function( source, ... )
+            SetBlankAnimation( source )
+        end))
 
-        -- hw.DebugPrint('[UseHarvestPoint] Skipped Animation Successfully', 4)
     end)
-
 end
 
 
@@ -73,35 +51,30 @@ end
 if config.Shovel.Enabled then
 
     modutil.mod.Path.Context.Wrap('UseShovelPoint', function()
-        hw.DebugPrint('[UseShovelPoint] triggered', 4)
-
-        local HarvestTool = 'ToolShovel'
-
-        -- ignores tool restriction
+        mod.DebugPrint('[UseShovelPoint] triggered', 4)
+        
         if config.Shovel.GiveTool then
-            _UnlockTool(HarvestTool)
-        elseif not _CheckIfToolIsUnlocked(HarvestTool) then
-            return
+            modutil.mod.Path.Wrap('HasAccessToTool', function(base, ...) 
+                return True 
+            end)
         end
 
         -- ignore invulnerability animations
-        modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', function()
+        modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', wrap(function( source, ... )
             -- do nothing
-        end)
-        modutil.mod.Path.Override('EndFamiliarHarvestInvulnerability', function()
+        end))
+        modutil.mod.Path.Override('EndFamiliarHarvestInvulnerability', wrap(function( source, ... )
             -- do nothing
-        end)
+        end))
 
-        modutil.mod.Path.Override('FamiliarShovelStartPresentation', function(source)
-            SetBlankAnimation(source, 'FamiliarShovelStartPresentation')
-        end)
-        modutil.mod.Path.Override('ShovelStartPresentation', function(source)
-            SetBlankAnimation(source, 'ShovelStartPresentation')
-        end)
+        modutil.mod.Path.Override('FamiliarShovelStartPresentation', wrap(function( source, ... )
+            SetBlankAnimation( source )
+        end))
+        modutil.mod.Path.Override('ShovelStartPresentation', wrap(function( source, ... )
+            SetBlankAnimation( source )
+        end))
 
-        -- hw.DebugPrint('[UseShovelPoint] Skipped Animation Successfully', 4)
     end)
-
 end
 
 
@@ -111,35 +84,29 @@ end
 if config.Pickaxe.Enabled then
 
     modutil.mod.Path.Context.Wrap('UsePickaxePoint', function()
-        hw.DebugPrint('[UsePickaxePoint] triggered', 4)
+        mod.DebugPrint('[UsePickaxePoint] triggered', 4)
 
-        local HarvestTool = 'ToolPickaxe'
-
-        -- ignores tool restriction
         if config.Pickaxe.GiveTool then
-            _UnlockTool(HarvestTool)
-        elseif not _CheckIfToolIsUnlocked(HarvestTool) then
-            return
+            modutil.mod.Path.Wrap('HasAccessToTool', function(base, ...) 
+                return True 
+            end)
         end
 
         -- ignore invulnerability animations
-        modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', function()
+        modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', wrap(function() 
             -- do nothing
-        end)
-        modutil.mod.Path.Override('EndFamiliarHarvestInvulnerability', function()
+        end))
+        modutil.mod.Path.Override('EndFamiliarHarvestInvulnerability', wrap(function() 
             -- do nothing
-        end)
+        end))
+        modutil.mod.Path.Override('FamiliarPickaxeStartPresentation', wrap(function( source, ... )
+                SetBlankAnimation( source )
+        end))
+        modutil.mod.Path.Override('PickaxeStartPresentation', wrap(function( source, ... )
+                SetBlankAnimation( source )
+        end))
 
-        modutil.mod.Path.Override('FamiliarPickaxeStartPresentation', function( source )
-            SetBlankAnimation( source, 'FamiliarPickaxeStartPresentation')
-        end)
-        modutil.mod.Path.Override('PickaxeStartPresentation', function( source )
-            SetBlankAnimation( source, 'PickaxeStartPresentation')
-        end)
-
-        -- hw.DebugPrint('[UsePickaxePoint] Skipped Animation Successfully', 4)
     end)
-
 end
 
 ----------------------
@@ -148,35 +115,29 @@ end
 if config.Exorcism.Enabled then
 
     modutil.mod.Path.Context.Wrap('UseExorcismPoint', function()
-        hw.DebugPrint('[UseExorcismPoint] triggered', 4)
+        mod.DebugPrint('[UseExorcismPoint] triggered', 4)
 
-        local HarvestTool = 'ToolExorcismBook'
-
-        -- ignores tool restriction
         if config.Exorcism.GiveTool then
-            _UnlockTool(HarvestTool)
-        elseif not _CheckIfToolIsUnlocked(HarvestTool) then
-            return
+            modutil.mod.Path.Wrap('HasAccessToTool', function( base, ... ) 
+                return True 
+            end)
         end
 
-        modutil.mod.Path.Override('FamiliarExorcismStartPresentation', function(source)
-            SetBlankAnimation(source, 'FamiliarExorcismStartPresentation')
-        end)
-        modutil.mod.Path.Override('ExorcismStartPresentation', function(source)
-            SetBlankAnimation(source, 'ExorcismStartPresentation')
-        end)
+        modutil.mod.Path.Override('FamiliarExorcismStartPresentation', wrap(function( source, ... )
+            SetBlankAnimation( source )
+        end))
+        modutil.mod.Path.Override('ExorcismStartPresentation', wrap(function( source, ... )
+            SetBlankAnimation( source )
+        end))
 
-        modutil.mod.Path.Override('ExorcismSequence', function(source)
-            return true
-        end)
-
-        modutil.mod.Path.Override('ExorcismSuccessPresentation', function ( source, ...)
+        modutil.mod.Path.Override('ExorcismSequence', wrap(function( source, ... ) 
+            return true 
+        end))
+        modutil.mod.Path.Override('ExorcismSuccessPresentation', wrap(function( source, ...)
             ExorcismSuccessPresentation_override( source )
-        end)
+        end))
 
-        -- hw.DebugPrint('[UseExorcismPoint] Skipped Animation Successfully', 4)
     end)
-
 end
 
 
@@ -186,25 +147,25 @@ end
 if config.Fishing.Enabled then
 
     modutil.mod.Path.Context.Wrap('UseFishingPoint', function()
-        hw.DebugPrint('[UseFishingPoint] triggered', 4)
+        mod.DebugPrint('[UseFishingPoint] triggered', 4)
 
-        local HarvestTool = 'ToolFishingRod'
-
-        -- ignores tool restriction
         if config.Fishing.GiveTool then
-            _UnlockTool(HarvestTool)
-        elseif not _CheckIfToolIsUnlocked(HarvestTool) then
-            return
+            modutil.mod.Path.Wrap('HasAccessToTool', function( base, ... ) 
+                return True 
+            end)
         end
 
-        modutil.mod.Path.Override('FamiliarFishingPresentation', function(source)
-            SetBlankAnimation(source, 'FamiliarFishingPresentation')
-        end)
-
-        modutil.mod.Path.Override('StartFishing', function( source, args )
+        modutil.mod.Path.Override('FamiliarFishingPresentation', wrap(function( source, ... )
+            SetBlankAnimation( source )
+        end))
+        modutil.mod.Path.Override('StartFishing', wrap(function( source, args )
             StartFishing_override( source, args )
-        end)
-
+        end))
     end)
-
 end
+
+
+-- -- TODO: remove this after testing
+-- ModUtil.Path.Override("InvalidateCheckpoint", function()
+--     ValidateCheckpoint({ Value = true })
+-- end)

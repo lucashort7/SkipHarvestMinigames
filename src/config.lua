@@ -1,7 +1,9 @@
 ---@meta hortModWizard-config
 local config = {
 	enabled = true,
-
+	AutoHarvestOnExit = {
+		Enabled = false,
+	},
 	Harvest = {
 		Enabled = true,
 	},
@@ -21,12 +23,14 @@ local config = {
 		Enabled = true,
 		GiveTool = false
 	},
-	
-	logLevel = 0
+	logLevel = 0,
 }
 
 local description = {
 	enabled = "Set to true to enable the mod, set to false to disable it.",
+	AutoHarvestOnExit = {
+		Enabled = "Auto Harvest everything on room exit, without the need to interact with each point."
+	},
 	Harvest = {
 		Enabled = "Enable to skip harvest animations."
 	},

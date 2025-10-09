@@ -5,17 +5,16 @@
 -- this file will be reloaded if it changes during gameplay,
 -- 	so only assign to values or define things here.
 
-function SetBlankAnimation( source, funcName )
-	hw.DebugPrint('[' .. funcName .. '] triggered', 4)
-	-- printMsg('---- [source]: \n' .. dumpTable(source))
-	if source ~= nil then
-		return rom.game.SetAnimation({Name = "Blank", DestinationId = source.ObjectId})
-	end
+
+function SetBlankAnimation( source )
+	waitUnmodified(0.15)
+	SetAnimation({Name = "Blank", DestinationId = source.ObjectId})
+	waitUnmodified(0.15)
 end
 
 
 function StartFishing_override( source, args )
-	hw.DebugPrint('[StartFishing] triggered', 4) 
+	mod.DebugPrint('[StartFishing] triggered', 4) 
 
 	args.FishingAnimationPointId = SpawnObstacle({ 
 		Name = "BlankObstacle", 
@@ -35,6 +34,6 @@ function StartFishing_override( source, args )
 end
 
 function ExorcismSuccessPresentation_override( source )
-	hw.DebugPrint('[ExorcismSuccessPresentation] triggered', 4)
+	mod.DebugPrint('[ExorcismSuccessPresentation] triggered', 4)
 	thread( ExorcismGhostDissipate, source )
 end

@@ -1,10 +1,7 @@
-
-hw = {}
-
 ---Logs a message at the specified log level with colour coding.
 ---@param t any The message to log.
 ---@param level number|nil The log level. 0 = Off, 1 = Errors, 2 = Warnings, 3 = Info, 4 = Debug. nil omits the level display.
-function hw.LogMessage(t, level)
+function mod.LogMessage(t, level)
     local logLevels = { [1] = "[ERROR] ", [2] = "[WARNING] ", [3] = "[INFO] ", [4] = "[DEBUG] " }
     local logColours = { [1] = "\27[31m", [2] = "\27[33m", [3] = "\27[95m", [4] = "\27[34m" } -- Red, Yellow, Green, Blue
     local resetColour = "\27[0m"
@@ -20,14 +17,14 @@ end
 ---Prints a message to the console at the specified log level
 ---@param t any The message to print.
 ---@param level number|nil The verbosity level required to print the message. 0 = Off/Always printed, 1 = Errors, 2 = Warnings, 3 = Info, 4 = Debug
-function hw.DebugPrint(t, level)
+function mod.DebugPrint(t, level)
     level = level or 0
     if config.logLevel >= level then
-        hw.LogMessage(t, level)
+        mod.LogMessage(t, level)
     end
 end
 
-function hw.dumpTable(tbl, indent)
+function mod.dumpTable(tbl, indent)
     local result = ""
     if not tbl then return result end
     if not indent then indent = 0 end
@@ -53,7 +50,7 @@ function hw.dumpTable(tbl, indent)
     return result
 end
 
-function hw.containsString(array, targetString)
+function mod.containsString(array, targetString)
     for _, value in ipairs(array) do
         if value == targetString then
             return true -- String found
@@ -62,7 +59,7 @@ function hw.containsString(array, targetString)
     return false -- String not found
 end
 
-function hw.dumpToFile(fileName, linesToWrite)
+function mod.dumpToFile(fileName, linesToWrite)
     local filePath = fileName .. '.txt'
 	local full_path = rom.path.combine(rom.paths.plugins_data(), filePath)
 
@@ -75,5 +72,3 @@ function hw.dumpToFile(fileName, linesToWrite)
 		print("Error: Could not open or create file " .. full_path)
 	end
 end
-
-return hw
