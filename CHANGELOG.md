@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added _AutoHarvestOnExit_. Harvest everything on room exit, without the need to interact with each point.
 
+### Modified
+
+- All _GiveTool_ now refers to BypassToolRequirements.
+
 ## [0.5.0] - 2025-10-09
 
 ### Modified

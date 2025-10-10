@@ -24,7 +24,11 @@ If you wants to install manually, checkout Hell2Modding README for more details.
 
 - ___AutoHarvestOnExit___
     - Disabled by default.
-    - When enabled, you will always skip _Harvest_ animations.
+    - When enabled, harvest everything on room exit without the need to interact with each point.
+
+- ___BypassToolRequirements___
+    - Disabled by default.
+    - When enabled, removes the game restriction that requires having the tools.
 
 - ___Harvest___
     - Enabled by default.
