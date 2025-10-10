@@ -17,7 +17,7 @@ If you wants to install manually, checkout Hell2Modding README for more details.
 
 - To access the config, go in __R2Modman__ then config. Choose _hortWizard-SkipHarvestMinigames.cfg_ and make any changes you wish.
 
-![Config](assets/r2mod-config.png)
+![R2Modman Config](https://github.com/user-attachments/assets/08719740-691d-4809-aca8-0f18213a261f)
 
 
 ## Features
@@ -27,6 +27,7 @@ If you wants to install manually, checkout Hell2Modding README for more details.
     - When enabled, harvest everything on room exit without the need to interact with each point.
 
 - ___BypassToolRequirements___
+
     - Disabled by default.
     - When enabled, removes the game restriction that requires having the tools.
 
