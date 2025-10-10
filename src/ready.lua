@@ -11,161 +11,109 @@ mod = modutil.mod.Mod.Register(_PLUGIN.guid)
 data = modutil.mod.Mod.Register(_PLUGIN.guid).Data
 
 
-local function wrap(callback)
-	return function( ... )
-		return callback( ... )
-	end
-end
-
-
----------------------
--- HarvestMinigame --
----------------------
+--[[ HarvestMinigame ]]--
 if config.Harvest.Enabled then
 
     modutil.mod.Path.Context.Wrap('UseHarvestPoint', function()
         mod.DebugPrint('[UseHarvestPoint] triggered', 4)
-        
-        -- ignore invulnerability animations
-        modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', wrap(function( source, ... )
-            -- do nothing
-        end))
-        modutil.mod.Path.Override('EndFamiliarHarvestInvulnerability', wrap(function( source, ... )
-            -- do nothing
-        end))
 
-        modutil.mod.Path.Override('FamiliarHarvestStartPresentation', wrap(function( source, ... )
-            SetBlankAnimation( source )
-        end))
-        modutil.mod.Path.Override('HarvestStartPresentation', wrap(function( source, ... )
-            SetBlankAnimation( source )
-        end))
+        -- skips invulnerability animations
+        mod.SkipsOrBypass('BeginFamiliarHarvestInvulnerability')
+        mod.SkipsOrBypass('EndFamiliarHarvestInvulnerability')
+
+        mod.WrapMagicGonads_override('FamiliarHarvestStartPresentation')
+        mod.WrapMagicGonads_override('HarvestStartPresentation')
 
     end)
 end
 
-
---------------------
--- ShovelMinigame --
---------------------
+--[[ ShovelMinigame ]]--
 if config.Shovel.Enabled then
 
     modutil.mod.Path.Context.Wrap('UseShovelPoint', function()
         mod.DebugPrint('[UseShovelPoint] triggered', 4)
-        
-        if config.Shovel.GiveTool then
-            modutil.mod.Path.Wrap('HasAccessToTool', function(base, ...) 
-                return True 
-            end)
+
+        -- tool restriction bypass 
+        if config.BypassToolRequirements.Enabled then
+            mod.SkipsOrBypass('HasAccessToTool')
+            mod.DebugPrint('[HasAccessToTool] Bypassed Tool Restriction! :)', 4)
         end
 
-        -- ignore invulnerability animations
-        modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', wrap(function( source, ... )
-            -- do nothing
-        end))
-        modutil.mod.Path.Override('EndFamiliarHarvestInvulnerability', wrap(function( source, ... )
-            -- do nothing
-        end))
+        -- skips invulnerability animations
+        mod.SkipsOrBypass('BeginFamiliarHarvestInvulnerability')
+        mod.SkipsOrBypass('EndFamiliarHarvestInvulnerability')
 
-        modutil.mod.Path.Override('FamiliarShovelStartPresentation', wrap(function( source, ... )
-            SetBlankAnimation( source )
-        end))
-        modutil.mod.Path.Override('ShovelStartPresentation', wrap(function( source, ... )
-            SetBlankAnimation( source )
-        end))
+        mod.WrapMagicGonads_override('FamiliarShovelStartPresentation')
+        mod.WrapMagicGonads_override('ShovelStartPresentation')
 
     end)
 end
 
-
----------------------
--- PickaxeMinigame --
----------------------
+--[[ PickaxeMinigame ]]--
 if config.Pickaxe.Enabled then
 
     modutil.mod.Path.Context.Wrap('UsePickaxePoint', function()
         mod.DebugPrint('[UsePickaxePoint] triggered', 4)
 
-        if config.Pickaxe.GiveTool then
-            modutil.mod.Path.Wrap('HasAccessToTool', function(base, ...) 
-                return True 
-            end)
+        -- tool restriction bypass 
+        if config.BypassToolRequirements.Enabled then
+            mod.SkipsOrBypass('HasAccessToTool')
+            mod.DebugPrint('[HasAccessToTool] Bypassed Tool Restriction! :)', 4)
         end
 
-        -- ignore invulnerability animations
-        modutil.mod.Path.Override('BeginFamiliarHarvestInvulnerability', wrap(function() 
-            -- do nothing
-        end))
-        modutil.mod.Path.Override('EndFamiliarHarvestInvulnerability', wrap(function() 
-            -- do nothing
-        end))
-        modutil.mod.Path.Override('FamiliarPickaxeStartPresentation', wrap(function( source, ... )
-                SetBlankAnimation( source )
-        end))
-        modutil.mod.Path.Override('PickaxeStartPresentation', wrap(function( source, ... )
-                SetBlankAnimation( source )
-        end))
+        -- skips invulnerability animations
+        mod.SkipsOrBypass('BeginFamiliarHarvestInvulnerability')
+        mod.SkipsOrBypass('EndFamiliarHarvestInvulnerability')
+
+        mod.WrapMagicGonads_override('FamiliarPickaxeStartPresentation')
+        mod.WrapMagicGonads_override('PickaxeStartPresentation')
 
     end)
 end
 
-----------------------
--- ExorcismMinigame --
-----------------------
+--[[ ExorcismMinigame ]]--
 if config.Exorcism.Enabled then
 
     modutil.mod.Path.Context.Wrap('UseExorcismPoint', function()
         mod.DebugPrint('[UseExorcismPoint] triggered', 4)
 
-        if config.Exorcism.GiveTool then
-            modutil.mod.Path.Wrap('HasAccessToTool', function( base, ... ) 
-                return True 
-            end)
+        -- tool restriction bypass 
+        if config.BypassToolRequirements.Enabled then
+            mod.SkipsOrBypass('HasAccessToTool')
+            mod.DebugPrint('[HasAccessToTool] Bypassed Tool Restriction! :)', 4)
         end
 
-        modutil.mod.Path.Override('FamiliarExorcismStartPresentation', wrap(function( source, ... )
-            SetBlankAnimation( source )
-        end))
-        modutil.mod.Path.Override('ExorcismStartPresentation', wrap(function( source, ... )
-            SetBlankAnimation( source )
-        end))
-
-        modutil.mod.Path.Override('ExorcismSequence', wrap(function( source, ... ) 
-            return true 
-        end))
-        modutil.mod.Path.Override('ExorcismSuccessPresentation', wrap(function( source, ...)
-            ExorcismSuccessPresentation_override( source )
-        end))
+        mod.WrapMagicGonads_override('FamiliarExorcismStartPresentation')
+        mod.WrapMagicGonads_override('ExorcismStartPresentation')
+        mod.SkipsOrBypass('ExorcismSequence')
+        mod.WrapMagicGonads_override('ExorcismSuccessPresentation')
 
     end)
 end
 
-
----------------------
--- FishingMinigame --
----------------------
+--[[ FishingMinigame ]]--
 if config.Fishing.Enabled then
 
     modutil.mod.Path.Context.Wrap('UseFishingPoint', function()
         mod.DebugPrint('[UseFishingPoint] triggered', 4)
 
-        if config.Fishing.GiveTool then
-            modutil.mod.Path.Wrap('HasAccessToTool', function( base, ... ) 
-                return True 
-            end)
+        -- tool restriction bypass 
+        if config.BypassToolRequirements.Enabled then
+            mod.SkipsOrBypass('HasAccessToTool')
+            mod.DebugPrint('[HasAccessToTool] Bypassed Tool Restriction! :)', 4)
         end
 
-        modutil.mod.Path.Override('FamiliarFishingPresentation', wrap(function( source, ... )
-            SetBlankAnimation( source )
-        end))
-        modutil.mod.Path.Override('StartFishing', wrap(function( source, args )
-            StartFishing_override( source, args )
-        end))
+        mod.WrapMagicGonads_override('FamiliarFishingPresentation')
+        mod.WrapMagicGonads_override('StartFishing')
+
     end)
 end
 
-
--- -- TODO: remove this after testing
--- ModUtil.Path.Override("InvalidateCheckpoint", function()
---     ValidateCheckpoint({ Value = true })
--- end)
+--[[ AutoHarvestOnExit ]]--
+if config.AutoHarvestOnExit.Enabled then
+    modutil.mod.Path.Context.Wrap('LeaveRoom', function( ... )
+        if not game.GameState.WorldUpgrades.WorldUpgradeAutoHarvestOnExit then
+            game.AutoHarvestOnExit()
+        end
+    end)
+end

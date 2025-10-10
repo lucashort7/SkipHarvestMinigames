@@ -22,6 +22,10 @@ If you wants to install manually, checkout Hell2Modding README for more details.
 
 ## Features
 
+- ___AutoHarvestOnExit___
+    - Disabled by default.
+    - When enabled, you will always skip _Harvest_ animations.
+
 - ___Harvest___
     - Enabled by default.
     - Refers to collecting Flowers/Plants.
@@ -32,33 +36,17 @@ If you wants to install manually, checkout Hell2Modding README for more details.
     - Refers to Digging.
     - When enabled, you will always skip _Shovel_ animations.
 
-    - ___GiveTool___
-        - Disabled by default.
-        - Gives Tool if you haven`t yet.
-
 - ___Pickaxe___
     - Enabled by default.
     - Refers to Mining.
     - When enabled, you will always skip _Pickaxe_ animations.
 
-    - ___GiveTool___
-        - Disabled by default.
-        - Gives Tool if you haven`t yet.
-
 - ___Exorcism___
     - Enabled by default.
     - Refers to Spirits minigame.
     - When enabled, you will always skip _Exorcism_ animations.
-    
-    - ___GiveTool___
-        - Disabled by default.
-        - Gives Tool if you haven`t yet.
 
 - ___Fishing___
     - Enabled by default.
     - Refers to Fishing minigame.
     - When enabled, you will always skip _Fishing_ animations.
-
-    - ___GiveTool___
-        - Disabled by default.
-        - Gives Tool if you haven`t yet.

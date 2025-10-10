@@ -42,7 +42,7 @@ function mod.dumpTable(tbl, indent)
         local v = tbl[k]
         local formatting = string.rep("  ", indent) .. tostring(k) .. ": "
         if type(v) == "table" then
-            result = result .. formatting .. "\n" .. dumpTable(v, indent + 1)
+            result = result .. formatting .. "\n" .. mod.dumpTable(v, indent + 1)
         else
             result = result .. formatting .. tostring(v) .. "\n"
         end

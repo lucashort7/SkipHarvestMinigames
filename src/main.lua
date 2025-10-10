@@ -49,6 +49,7 @@ local function on_reload()
 	if config.enabled == false then return end
 	import_as_fallback(rom.game)
 	import 'reload.lua'
+	-- import 'debug.lua'
 end
 
 -- this allows us to limit certain functions to not be reloaded.

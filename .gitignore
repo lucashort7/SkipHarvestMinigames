@@ -4,3 +4,4 @@ build/
 src/icon.png
 src/LICENSE
 src/manifest.json
+src/debug.lua
