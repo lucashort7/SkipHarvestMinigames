@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2025-10-10
+
 ### Added
 
 - Added _AutoHarvestOnExit_. Harvest everything on room exit, without the need to interact with each point.
@@ -57,7 +59,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed config.lua reference
 
-[unreleased]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.5.0...HEAD
+[unreleased]: https://github.com/lucashort7/SkipHarvestMinigames/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.5.0...1.0.0
 [0.5.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.2.2...0.3.0
