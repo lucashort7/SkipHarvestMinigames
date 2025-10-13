@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-10-13
+
 ## Modified
 
 - Updated some _Modutil.Path.Wrap_ functions to _Modutil.Path.Override_
@@ -63,7 +65,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed config.lua reference
 
-[unreleased]: https://github.com/lucashort7/SkipHarvestMinigames/compare/1.0.0...HEAD
+[unreleased]: https://github.com/lucashort7/SkipHarvestMinigames/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.5.0...1.0.0
 [0.5.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/lucashort7/SkipHarvestMinigames/compare/0.3.0...0.4.0
