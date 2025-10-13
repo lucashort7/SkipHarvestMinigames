@@ -27,7 +27,6 @@ If you wants to install manually, checkout Hell2Modding README for more details.
     - When enabled, harvest everything on room exit without the need to interact with each point.
 
 - ___BypassToolRequirements___
-
     - Disabled by default.
     - When enabled, removes the game restriction that requires having the tools.
 

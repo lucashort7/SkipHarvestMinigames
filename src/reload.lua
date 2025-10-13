@@ -9,6 +9,11 @@ local overrideReferenceMapping = {}
 
 local function setupReferenceTable()
 	overrideReferenceMapping = {
+		HasAccessToTool							= SkipsOrBypass_override,
+
+		BeginFamiliarHarvestInvulnerability     = SkipsOrBypass_override,
+		EndFamiliarHarvestInvulnerability		= SkipsOrBypass_override,
+
 		FamiliarHarvestStartPresentation		= SetBlankAnimation_override,
 		HarvestStartPresentation				= SetBlankAnimation_override,
 
@@ -20,6 +25,7 @@ local function setupReferenceTable()
 
 		FamiliarExorcismStartPresentation 		= SetBlankAnimation_override,
 		ExorcismStartPresentation 				= SetBlankAnimation_override,
+		ExorcismSequence						= SkipsOrBypass_override,
 		ExorcismSuccessPresentation				= ExorcismSuccessPresentation_override,
 
 		FamiliarFishingPresentation				= SetBlankAnimation_override,
@@ -31,6 +37,10 @@ local function wrap(callback)
 	return function( ... )
 		return callback( ... )
 	end
+end
+
+function SkipsOrBypass_override()
+    return true
 end
 
 function SetBlankAnimation_override( source, ... )
@@ -68,16 +78,11 @@ function mod.WrapMagicGonads_override( referenceFunctionName )
 	return modutil.mod.Path.Override( referenceFunctionName , wrap(
 		function( source, args )
 			local overrideFunction = overrideReferenceMapping[referenceFunctionName]
-			overrideFunction( source, args )
+			return overrideFunction( source, args )
 		end)
 	)
 end
 
-function mod.SkipsOrBypass( pathReference )
-    return modutil.mod.Path.Wrap( pathReference,
-		function( ... ) return true end
-	)
-end
 
 ModUtil.LoadOnce(function()
 	setupReferenceTable()

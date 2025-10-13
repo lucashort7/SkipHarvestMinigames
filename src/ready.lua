@@ -18,8 +18,8 @@ if config.Harvest.Enabled then
         mod.DebugPrint('[UseHarvestPoint] triggered', 4)
 
         -- skips invulnerability animations
-        mod.SkipsOrBypass('BeginFamiliarHarvestInvulnerability')
-        mod.SkipsOrBypass('EndFamiliarHarvestInvulnerability')
+        mod.WrapMagicGonads_override('BeginFamiliarHarvestInvulnerability')
+        mod.WrapMagicGonads_override('EndFamiliarHarvestInvulnerability')
 
         mod.WrapMagicGonads_override('FamiliarHarvestStartPresentation')
         mod.WrapMagicGonads_override('HarvestStartPresentation')
@@ -35,13 +35,13 @@ if config.Shovel.Enabled then
 
         -- tool restriction bypass 
         if config.BypassToolRequirements.Enabled then
-            mod.SkipsOrBypass('HasAccessToTool')
+            mod.WrapMagicGonads_override('HasAccessToTool')
             mod.DebugPrint('[HasAccessToTool] Bypassed Tool Restriction! :)', 4)
         end
 
         -- skips invulnerability animations
-        mod.SkipsOrBypass('BeginFamiliarHarvestInvulnerability')
-        mod.SkipsOrBypass('EndFamiliarHarvestInvulnerability')
+        mod.WrapMagicGonads_override('BeginFamiliarHarvestInvulnerability')
+        mod.WrapMagicGonads_override('EndFamiliarHarvestInvulnerability')
 
         mod.WrapMagicGonads_override('FamiliarShovelStartPresentation')
         mod.WrapMagicGonads_override('ShovelStartPresentation')
@@ -57,13 +57,13 @@ if config.Pickaxe.Enabled then
 
         -- tool restriction bypass 
         if config.BypassToolRequirements.Enabled then
-            mod.SkipsOrBypass('HasAccessToTool')
+            mod.WrapMagicGonads_override('HasAccessToTool')
             mod.DebugPrint('[HasAccessToTool] Bypassed Tool Restriction! :)', 4)
         end
 
         -- skips invulnerability animations
-        mod.SkipsOrBypass('BeginFamiliarHarvestInvulnerability')
-        mod.SkipsOrBypass('EndFamiliarHarvestInvulnerability')
+        mod.WrapMagicGonads_override('BeginFamiliarHarvestInvulnerability')
+        mod.WrapMagicGonads_override('EndFamiliarHarvestInvulnerability')
 
         mod.WrapMagicGonads_override('FamiliarPickaxeStartPresentation')
         mod.WrapMagicGonads_override('PickaxeStartPresentation')
@@ -79,13 +79,13 @@ if config.Exorcism.Enabled then
 
         -- tool restriction bypass 
         if config.BypassToolRequirements.Enabled then
-            mod.SkipsOrBypass('HasAccessToTool')
+            mod.WrapMagicGonads_override('HasAccessToTool')
             mod.DebugPrint('[HasAccessToTool] Bypassed Tool Restriction! :)', 4)
         end
 
         mod.WrapMagicGonads_override('FamiliarExorcismStartPresentation')
         mod.WrapMagicGonads_override('ExorcismStartPresentation')
-        mod.SkipsOrBypass('ExorcismSequence')
+        mod.WrapMagicGonads_override('ExorcismSequence')
         mod.WrapMagicGonads_override('ExorcismSuccessPresentation')
 
     end)
@@ -99,7 +99,7 @@ if config.Fishing.Enabled then
 
         -- tool restriction bypass 
         if config.BypassToolRequirements.Enabled then
-            mod.SkipsOrBypass('HasAccessToTool')
+            mod.WrapMagicGonads_override('HasAccessToTool')
             mod.DebugPrint('[HasAccessToTool] Bypassed Tool Restriction! :)', 4)
         end
 
